@@ -1,0 +1,18 @@
+url de exemplo: https://github.com/Mdsoare/SegInfo.git
+
+Criando um novo repositório via linha de comando:
+
+echo "# SegInfo" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Mdsoare/SegInfo.git
+git push -u origin main
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+…Ou baixando um repositório existente via linha de comando
+
+git remote add origin https://github.com/Mdsoare/SegInfo.git
+git branch -M main
+git push -u origin main

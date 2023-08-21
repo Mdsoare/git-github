@@ -2,14 +2,13 @@
 
 <p align="center"><font face="Helvetica"> Repositório criado como material de apoio introdutório ao uso do Git e GitHub </font></p>
 <p> </p>
-<h3> <font face="Helvetica"> 📖 Alguns dos assuntos abordados 📖</font></h3>
+<h3> <font face="Helvetica"> 📖 Assuntos abordados 📖</font></h3>
 
 <ul>
 	<font face="Helvetica">
-	<li>Tutorial Markdown</li>
-	<li>Apostilas do curso sobre Git e GitHub do profº Guanabara</li>
-	<li>Material de apoio ao curso de introdução ao Git e GitHub do profº Bruno Orlandi</li>
-	<li>Material extra - Criando um repositório e comandos básicos Git</li>
+		<li>Criando um repositório Git pelo prompt</li>
+		<li>Help de comandos básicos</li>
+		<li>Meu primeiro repositório</li>
 	</font>
 </ul>
 

@@ -1,1 +1,0 @@
-Nos slides onde está escrito "MASTER", leia-se "MAIN" no que se refere a "BRANCH"

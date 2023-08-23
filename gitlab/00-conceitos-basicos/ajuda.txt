@@ -1,0 +1,3 @@
+Apoio:
+https://www.redhat.com/pt-br/topics/devops/what-cicd-pipeline
+https://www.hostgator.com.br/blog/o-que-e-deploy-e-como-realiza-lo/

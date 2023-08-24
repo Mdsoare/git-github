@@ -1,0 +1,611 @@
+1º) criar um arquivo de configuração de pipeline chamado .gitlab-ci.yml. Estrutura possui identação:
+
+nome_do_job:
+	before_script:
+		- echo "Importando variáveis..."
+	script:
+		- echo "Parametro obrigatório..."
+	after_script:
+		- echo "Removendo temporários..."
+
+2º) Criar repositório no GitLab;
+
+3º) Vincular repositório remoto ao diretório atual:
+
+// Git global setup:
+$ git config --global user.name "Seu Nome"
+$ git config --global user.email "SeuEmail@email.com"
+
+// Create a new repository:
+$ git clone https://gitlab.com/seu_perfil/seu_repositorio.git
+$ cd seu_repositorio
+$ git switch -c main
+$ touch README.md
+$ git add README.md
+$ git commit -m "add README"
+$ git push -u origin main
+
+// Push and existing folder:
+$ cd pasta_local
+$ git init --initial-branch=main
+$ git remote add origin https://gitlab.com/seu_perfil/seu_repositorio.git
+$ git add .
+$ git commit -m "Initial commit"
+$ git push -u origin main 
+
+// Push and existing Git repository
+$ cd pasta_local
+$ git remote rename origin old-origin
+$ git remote add origin https://gitlab.com/seu_perfil/seu_repositorio.git
+$ git push -u origin --all
+$ git push -u origin --tags
+
+4º) Ao executar um push será solicito o usuário e um Token. Como criar seu token:
+
+- No avatar do usuário no canto superior direito vá em "preferencias"
+- No lado esquerdo vá em "Access Tokens"
+- Em "Token name" insira o nome do Token a ser criado
+- É possível dar uma data de expiração ao token
+- Em "Select scopes" dê as permissões necessárias para o acesso conforme suas necessidades
+- Por fim, clique em "Create personal access token" 
+
+* IMPORTANTE:
+
+- Em "Your new personal access token" é possível visualizar o token. Anote o mesmo pq sempre que houver um sincronização
+com o repositório (push, pull, etc.) ele será solicitado! 
+
+5º) Clique no repositório no GitLab e no menu lateral esquerdo vá em "CI/CD >> Pipelines" para visualizar sua pipeline
+6º) Para visualizar seus JOBS especificados em .gitlab-ci.yml vá em "CI/CD >> Jobs"
+
+7º) Separando os JOBS em Stages
+* No arquivo .gitlab-ci.yml:
+----------------------------------
+
+# Arquivo de configuração Pipeline
+
+# Setando seus estágios:
+stages:
+	- teste
+	- build
+	- deploy
+
+# Criando Jobs:
+executar_teste-1: # Nome do Job
+	stage: teste # Indicando o stage que o job pertence
+	script: # Parâmetro obrigatório
+		- echo "Executando teste 1"
+
+executar_teste-2:
+	stage: teste
+	before_script: # O que deve ser executado antes do script
+		- echo "Preparando teste..." 
+		- echo "Podemos ter várias etapas. uma em baixo da outra com "-" "
+	script:
+		- echo "Executando teste 2 em paralelo ao teste 1"
+	after_script: # O que deve ser executado após o script
+		- echo "Limpando temporários...."
+
+criar_imagens:
+	stage: build
+	script:
+		- echo "Criando imagem... Job executado após sucesso no estágio teste"
+
+push_imagens:
+	needs: # Parâmetro usado para indicar que o Job só será executado se o "criar_imagens" tiver sucesso
+		- criar_imagens
+	stage: build
+	script:
+		- echo "Upload de imagem... Job só será executado após o Job criar_imagens finalizar com sucesso"
+
+kubernetes:
+	stage: deploy
+	script:
+	 - echo "Executando deploy..."
+
+8º) É possível executar um script para ser executado a partir do .gitlab-ci.yml (pipeline). OBS: Toda execução de 
+pipeline é através de um container docker. A título de exemplo crie um arquivo no mesmo diretório do arquivo 
+.gitlab-ci.yml chamado:
+
+"script.sh"
+-----------------------------------
+#!/bin/bash
+
+echo "Executando testes..."
+pwd
+ls
+cat /etc/os-release
+mkdir pipeline
+ls
+------------------------------------
+
+- Já em .gitlab-ci.yml, no pipeline desejado use:
+
+-----------------------------------
+....//trecho de código apenas//....
+
+executar_teste-1:
+	stage: teste
+	before_script:
+		- echo "Preparando testes..."
+		- chmod +x ./script.sh
+	script:
+		- ./script.sh
+-----------------------------------
+....//trecho de código apenas//....
+
+$ git add .
+$ git commit -m "Bash Script"
+$ git push -u origin main 
+
+- Agora vá no GitLab vá em "CI/CD >> Pipeline >> Status". Em "Status" clique em "running" ou em "passed" ou "failed" dependendo
+do status. Considerando que o Pipeline ainda esteja em execução, clique em "running" mesmo..rs
+
+- Na aba Pipeline, clique no JOB "executar_teste-1" caso já tenha sido executado e vai abrir "um terminal" onde pode-se
+acompanhar todos os comandos de "script.sh"
+
+
+Exercícios:
+O que é um pipeline de CI/CD?
+	é um processo que orienta o desenvolvimento de software por um caminho de criação, testes e implantação do código, também conhecido como CI/CD
+	
+Qual é o objetivo de um Pipeline?
+	O objetivo da automação do processo é minimizar erros humanos e manter a consistência até o lançamento
+
+	
+	
+Como podemos definir um stage no Gitlab?
+	São como blocos onde podemos agrupar jobs. Um stage somente é iniciado quando o stage anterior é finalizado
+
+Como podemos definir um Job no Gitlab?
+	É cada tarefa dentro da pipeline, essas tarefas podem ser dependentes umas das outras
+
+Qual parâmetro é utilizado para indicar a dependência entre Jobs?
+	needs
+
+9º) Material de apoio:
+
+https://academiapme-my.sharepoint.com/personal/nubia_dio_me/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fnubia%5Fdio%5Fme%2FDocuments%2FSlides%2DDIO%2FCI%2DCD%20GitLab%2FGitLab%20%2D%20Conceitos%20b%C3%A1sicos&ga=1
+
+https://www.redhat.com/pt-br/topics/devops/what-cicd-pipeline
+
+https://www.hostgator.com.br/blog/o-que-e-deploy-e-como-realiza-lo/
+
+https://aws.amazon.com/pt/devops/
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+10º) Branch e Pipeline >> Criando uma nova branch:
+
+- Visualizando a branch atual:
+$ git status
+
+- Criando uma nova branch:
+$ git branch novabranch
+ou
+$ git checkout -b novabranch
+
+- Listando suas branches:
+OBS: onde tiver o (*) é a sua branch atual
+$ git branch --all
+
+- Trocando de branch:
+$ git checkout novabranch
+
+- Trabalhando com a nova branch:
+$ touch novo_teste.txt
+$ git add .
+$ git commint -m "Executando testes na nova branch"
+
+- Adcionando a branch ao repositório remoto:
+$ git push --set-upstream origin novabranch
+
+- Checando no GitLab a nova branch:
+	No seu projeto (repositório) vá em "Repository >> Branches" no menu lateral esquerdo. 
+	Observe a aba "Overview >> Active branches"
+ 
+### ATENÇÃO!!!
+
+	Ao trabalharmos com branches já contendo o arquivo .gitlab-ci.yml é importante "setar" primeiro em qual(is) branch(es)
+deve ser executado o Pipeline com o parâmetro "only". Exemplo no arquivo .gitlab-ci.yml:	
+
+-----------------------------------
+stages:
+	- teste
+	- build
+	- deploy
+
+executar_teste-1:
+	stage: teste
+	script:
+		- echo "Executando teste 1"
+		
+executar_teste-2:
+	stage: teste
+	before_script:
+		- echo "Preparando teste 2..."
+		- chmod +x ./script.sh
+	script:
+		- ./script.sh
+	after_script:
+		- echo "Apagando temporários..."
+		
+criar_imagens:
+	only: # Parâmetro para indicar em qual(is) branch(es) o Pipeline deve ser executado
+		- main
+	stage: build
+	script:
+		- echo "Criando imagem... Job executado após sucesso no estágio teste"
+
+push_imagens:
+	only:
+		- main
+	needs:
+		- criar_imagens
+	stage: build
+	script:
+		- echo "Upload de imagem... Job só será executado após o Job criar_imagens finalizar com sucesso"
+
+kubernetes:
+	only:
+		- main
+	stage: deploy
+	script:
+	 - echo "Executando deploy..."
+-----------------------------------
+
+11º) Workflow Rules. Em vez de ficar setando o parâmetro "only" ao longo do arquivo podemos trabalhar com o conceito de
+regra de execução. Vejamos como ficaria nosso arquivo .gitlab-ci.yml com esta mudança para executar o Pipeline apenas na
+branch main:
+
+-----------------------------------
+workflow:
+	roles:
+		- if: $CI_COMMIT_BRANCH != "main" 	# a variável contem o valor da branch atual
+		  when: never #tab abaixo do if
+		- when: always
+stages:
+	- teste
+	- build
+	- deploy
+
+executar_teste-1:
+	stage: teste
+	script:
+		- echo "Executando teste 1"
+		
+executar_teste-2:
+	stage: teste
+	before_script:
+		- echo "Preparando teste 2..."
+		- chmod +x ./script.sh
+	script:
+		- ./script.sh
+	after_script:
+		- echo "Apagando temporários..."
+		
+criar_imagens:
+	stage: build
+	script:
+		- echo "Criando imagem... Job executado após sucesso no estágio teste"
+
+push_imagens:
+	needs:
+		- criar_imagens
+	stage: build
+	script:
+		- echo "Upload de imagem... Job só será executado após o Job criar_imagens finalizar com sucesso"
+
+kubernetes:
+	stage: deploy
+	script:
+	 - echo "Executando deploy..."
+-----------------------------------
+
+13º) Alterando a imagem padrão do Docker Executor.
+
+	É possível visualizar a imagem docker usada no GitLab. Basta ir em "CI/CD >>> Pipelines >>> Status" Clique em "passed". 
+Em seguida, basta clicar em um Job na aba "Pipeline".  Agora é só navegar no log (terminal). Para mais informações: 
+
+- Ir em https://hub.docker.com (OBS: é necessário ter uma conta registrada!)
+- Em "Search Docker Hub" pesquise por ruby. Na aba "Tags" têm várias versões onde é possível visualizar a estrutura das 
+imagens docker disponíveis.
+
+	Considerando que a imagem docker padrão para executar CI/CD não possua um determinado comando. Por exemplo,
+a imagem utilizada no treinamento é um "Ruby 2.5 Linux" e gostaríamos de executar um "npm", por exemplo: "- npm version". 
+Também é sabido que existe uma imagem docker node 19.1 que dá suporte ao npm. Num container poderíamos fazer 
+"docker pull node:19.1", mas e no GitLab, como trocar a imagem para executar o comando? 
+	É simples, basta setar no arquivo a opção "image: node:19.1" no .gitlab-ci.yml:
+
+-----------------------------------
+....//trecho de código apenas//....
+
+image: node:19.1 #OBS: ao incluir no início este parâmetro, todos os Jobs executarão com esta imagem 
+
+stages:
+	- teste
+	- build
+	- deploy
+
+executar_teste:
+	stage:
+		- teste
+	script:
+		- npm verson
+-----------------------------------
+....//trecho de código apenas//....
+
+	Mas, e se desejarmos executar a imagem padrão e apenas no Job usar uma versão específica? Basta setar dentro do Job!
+
+-----------------------------------
+....//trecho de código apenas//....
+
+stages:
+	- teste
+	- build
+	- deploy
+
+executar_teste:
+	image: node:19.1 
+	stage:
+		- teste
+	script:
+		- npm verson
+		
+-----------------------------------
+....//trecho de código apenas//....
+
+	Assim temos uma flexibilidade para executar mais de uma versão na Pipeline. Também é possível executar uma imagem 
+personalizada.
+
+
+14º) Instalando e configurando o Gitlab Runner:
+
+- Crie um novo projeto no gitlab
+- Vá em "Settings >> CI/CD" no menu lateral esquerdo
+- Em "Runners" clique em "Expand"
+- Em "Shared runners", por padrão, deve estar marcada a opção "Enable shared runners for this project", que são os
+containers do próprio gitlab, onde os Pipelines do projeto são executados.
+
+- Na documentação do GitLab temos as informações necessárias para instalar o runner num debian da GCP (Google Cloud)
+https://docs.gitlab.com/runner/install/
+https://docs.gitlab.com/runner/install/linux-repository.html
+
+Seguem os passos para instalar no Debian/Ubuntu/Mint:
+
+A. Instalando:
+# curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" | sudo bash
+# sudo apt-get install gitlab-runner
+
+NOTA: É possível especificar uma versão do runner. Segue:
+# apt-cache madison gitlab-runner
+# sudo apt-get install gitlab-runner=15.11.0
+
+B. Registrando:
+# sudo gitlab-runner register 
+# https://gitlab.com/
+OBS: Em "Specific runners" no gitlab tem um token. Copie-o e cole no terminal
+# GR1348941dcgErrKc2vRfyad-iU_A
+# gcp, cloud, linux
+# gcp, cloud, linux
+# Máquina de teste para gitlab-runner
+# shell
+# gitlab-runner start
+OBS: Para parar, use: # gitlab-runner stop
+- No GitLab é possível visualizar se o processo foi bem sucedido:
+Em "Settings >>> CI/CD >> Available specific runners" deve aparecer a máquina com as tags gcp, cloud, linux
+
+C. Preparando o S.O para ser usado pelo GitLab Runner:
+
+Após a instalação, será criado o usuário chamado gitlab-runner. É importante incluir tanto o usuário local do linux (no
+treinamento é o gcp) quanto o gitlab-runner ao grupo docker para os acessos ao Docker:
+
+$ sudo usermod -aG docker gcp 				# usuário gcp adicionado ao grupo docker
+$ sudo usermod -aG docker gitlab-runner
+
+D. Logar no Docker Hub com os usuários para fazer o push e o pull de imagens no Docker:
+
+- Logue-se no sistema com o usuário recém criado:
+# su gitlab-runner
+
+- Agora logue-se no Docker:
+$ docker login
+
+OBS: É necessário inserir suas credenciais de acesso ao Docker Hub.
+Também será gerado o arquivo (descriptografado):
+/home/gitlab-runner/.docker/config.json
+
+- Ao final, receberá a mensagem:
+"Login Succeeded" 
+
+- Para remover o aviso de arquivo desprotegido, é necessário uma configuração. Acesse a documentação:
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+$ exit
+
+- Se necessário, repita os passos para o usuário local gcp!
+
+ATENÇÃO:
+	O RUNNER É CONFIGURADO POR PROJETO!!!
+	Caso seja iniciado outro projeto será necessário configurar novamente o runner com o token do novo projeto:
+
+$ sudo gitlab-runner register
+$ https://gitlab.com
+$ GR1348941onP1FFH4hq1UezbsYhBu
+$ GCP RUNNER
+$ gcp,cloud, linux
+$ <Enter>
+$ shell
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+EXERCÍCIO:
+
+- Crie um diretório chamado app dentro do repositório local e os arquivos index.html e dockerfile. Também crie o arquivo 
+.gitlab-ci.yml. OBS: Considerando que já estamos no diretório raiz do repositório!
+
+$ mkdir app
+$ cd app
+$ touch index.html
+$ touch dockerfile
+$ cd ..
+$ touch .gitlab-ci.yml
+$ cd -
+$ nano index.html
+-----------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>App 1.0</title>
+</head>
+<body>
+	<h1>App 1.0</h1>
+</body>
+</html>
+-----------------------------------------------
+^O
+
+$ nano dockerfile
+-----------------------------------------------
+FROM httpd:latest
+
+WORKDIR /usr/local/apache2/htdocs/
+
+COPY . /usr/local/apache2/htdocs/
+
+EXPOSE 80
+-----------------------------------------------
+^O
+
+$ cd ..
+$ nano .gitlab-ci.yml
+-----------------------------------------------
+stages:
+	- build
+	- deploy
+
+criar_imagens:
+	stage: build
+	tags: 		# Definiremos onde o JOB será executado!
+		- gcp 	# Poderia ser qualquer tag definida no gitlab-runner anteriormente: gcp, cloud, linux
+	script:
+		- docker build -t nomeDoUsuarioDockerHub/gcp-runner:1.0 app/. # -t login/nomeDaImagem localDoDockerfile
+		- docker push nomeDoUsuarioDockerHub/gcp-runner:1.0
+
+executar_imagens:
+	stage: deploy
+	needs:
+		- criar_imagens
+	tags:
+		- gcp
+	script:
+		- docker run -dti --name webserver -p 80:80 nomeDoUsuarioDockerHub/gcp-runner:1.0
+-----------------------------------------------
+^O
+
+$ git add .
+$ git commit -m "App 1.0"
+$ git push -u origin main
+
+No navegador digite o IP ou hostname. Ex: 35.198.57.187. Se tudo tiver correto, será exibida a página html. 
+
+NOTAS: 
+- No treinamento o professor apagou a branch master (main). Para esses casos use:
+$ git push --set-upstream origin main
+
+- Também estava rodando outra imagem no docker (servidor Linux) chamada webserver. Então para resolver:
+$ docker ps
+$ docker -rm webserver --force
+$ docker ps
+
+- É importante notar que o GitLab usou a o servidor Linux para rodar o apache2. Portanto após a execução do Pipeline,
+o serviço httpd continuará em execução porque não foi especificado que era para parar! 
+
+15º) Desafio de projeto: Pipeline de Criação e Execução de uma Imagem Docker
+
+Descrição:
+	Criar um Pipelinede criação e execução de uma imagem docker utilizando como base, qualquer template disponível
+em https://www.free-css.com . A imagem deverá ser criada e executada num servidor na nuvem utilizando um Gitlab Runner.
+
+Considrando que o GitLab Runner já esteja instalado e configurado. Seguem os passos:
+
+1º) Baixar um tamplate
+2º) Prepara um repositório GitLab chamado projeto1
+3º) Preparar máquina local para sincronizar com o Repositório Remoto (Projeto GitLab)
+4º) No diretório criar a pasta app e copiar o conteúdo (extraído) do templete para ela
+5º) Ainda no diretório app, crie o arquivo dockerfile:
+
+$ pwd
+$ touch dockerfile
+$ nano dockerfile
+-----------------------------------------------
+FROM httpd:latest
+
+WORKDIR /usr/local/apache2/htdocs/
+
+COPY . /usr/local/apache2/htdocs/
+
+EXPOSE 80
+-----------------------------------------------
+^O
+
+6º) Crie o arquivo .gitlab-ci.yml
+
+$ cd ..
+$ touch gitlab-ci.yml
+$ nano gitlab-ci.yml
+
+-----------------------------------------------
+stages:
+	- build
+	- deploy
+
+criar_imagens:
+	stage: build
+	tags:
+		- gcp
+	script:
+		- docker build -t nomeDoUsuarioDockerHub/gcp-projeto1:1.0
+		- docker push nomeDoUsuarioDockerHub/gcp-projeto1:1.0
+
+executar_imagens:
+	stage: deploy
+	needs:
+		- criar_imagens
+	tags:
+		- gcp
+	script:
+		- docker run -dti --name webserver -p 80:80 nomeDoUsuarioDockerHub/gcp-projeto1:1.0
+-----------------------------------------------
+^O
+
+$ git add .
+$ git commit -m "Projeto 1.0"
+$ git push --set-upstream origin main
+
+7º) Acompanhar no GitLab o Pipeline e ao final verificar no servidor se tudo está ok!
+
+$ docker ps
+CONTAINER ID	IMAGE										COMMAND					CREATED				STATUS			
+09adc681a472 	nomeDoUsuarioDockerHub/gcp-projeto1:1.0		"httpd-foreground"		About an hour ago 	Up About an hour
+PORTS							NAMES
+0.0.0.0:80 -> 80/tcp, 80/tcp	webserver
+
+8º) No navegador 35.198.57.187/index.html
+
+
+****************************************************************************************************************************
+
+Ajuda:
+
+[GitLab Docs] - https://docs.gitlab.com/ee/ci/yaml/index.html
+[Prática de DevOps com Docker] - https://aurimrv.gitbook.io/pratica-devops-com-docker/ (Seção 5.6)
+[Manual de Integração com o Ecossistema da SETIC] - https://documentos.sistemas.ro.gov.br/books/manual-de-integracao-com-o-ecossistema-da-setic  (Seção Esteira de Automação / GitLab CI/CD)
+[4Linux] - https://blog.4linux.com.br/ci-cd-com-gitlab/ // https://blog.4linux.com.br/gitlab-ci-integracao-continua-sem-sair-do-repositorio/
+[LinkedIn] - https://pt.linkedin.com/pulse/criando-pipeline-de-qualidade-software-gitlab-ara%C3%BAjo-fagundes
+[DigitalOcean] - https://www.digitalocean.com/community/tutorials/como-configurar-pipelines-de-integracao-continua-com-o-gitlab-ci-no-ubuntu-16-04-pt
+[O Cubos] - https://blog.cubos.io/conhecendo-o-gitlab-ci-cd/
+[Engineering] - https://blog.engdb.com.br/gitlab-ci/
+{BrunoBatista] - https://medium.com/automa%C3%A7%C3%A3o-com-batista/fazendo-integra%C3%A7%C3%A3o-cont%C3%ADnua-dos-testes-automatizados-com-gitlab-ci-5aa20045d281

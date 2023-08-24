@@ -1,0 +1,193 @@
+# Configurando o Git
+
+Existem os níveis de configuração, a saber:
+
+--global >>> afeta todos os projetos (repositórios) do usuário
+--system >>> afeta todos os usuários do sistema local
+--local  >>> afeta apenas o repositório atual
+
+* Configurando nome e email: 
+
+git config --global user.name "seu nome"
+git config --global user.email seuemail@exemplo.com
+
+Para conferir basta digitar:
+
+git config --global user.name
+git config --global user.email
+
+* Visualizando a branch default:
+git config --global init.defaultBranch
+master
+Para alterar, use:
+git config --global init.defaultBranch main (#Pode ser outro nome!)
+
+* Salvando suas credênciais de acesso:
+
+git config --global credential.helper (cache|store) # Onde cache salva temporariamente e store "permanentemenete" 
+
+Podemos setar um arquivo também:
+git config --global credential.helper 'store --file ~/.my-credentials'
+
+Para visualizarmos as credênciais:
+git config --global --show-origin credential.helper
+
+Também podemos ver os arquivos:
+cat .gitconfig
+cat .git-credentials
+
+
+* Para visualizarmos todas as configurações:
+
+git config --list --show-origin
+
+* para visualizarmos as configurações globais:
+
+git config --global --list
+
+///////////////////////////////////////////////////////////////////////
+
+INICIANDO UM REPOSITÓRIO:
+
+1º) Clone:
+
+git clone endereçoDoRepositorioRemoto (diretorioLocal #Opcional)
+git remote -v
+
+2º) Local:
+
+git init
+git remote add origin endereçoDoRepositorioRemoto
+
+////////////////////////////////////////////////////////////////////
+
+* Para ignorarmos um arquivo/diretório basta inserir no arquivo .gitignore na branch main. 
+E para iginorarmos mais arquivo(s)/diretório(s) basta adicionar linha a linha o arquivo .gitignore
+
+* Por padrão o git não monitora diretórios vazios, mas se houver necessidade basta inserir o arquivo .gitkeep.
+É uma convenção!
+
+/////////////////////////////////////////////////////////////////////
+
+Desfazendo Alterações no Repositório Local
+
+* git initi no diretório errado, basta excluir o .git
+
+rm -rf .git
+
+* Após alterarmos um arquivo antes de usar o 'git add', podemos voltar ao estado anterior.
+O comando a seguir descarta todas as alterações locais:
+
+git restore nomeDoArquivo
+
+* Alterando a mensagem do último commit:
+
+git log
+git commit --amend -m "nova mensagem" 
+git log
+
+OBS: Podemos fazer isso por um editor (já setado no git config):
+git commit --amend
+
+
+* Desfazendo algum commit com soft, mixed, hard
+
+git log # para pegar o hash do commit desejado
+git reset --soft hashDoCommitDesejado
+git status # Os arquivos voltar a área de preparação (após o 'git add .', por exemplo)
+
+git log # para pegar o hash do commit desejado
+git reset --mixed hashDoCommitDesejado (# mixed é o padrão, portanto poderia ser omitido)
+git status # Os arquivos voltam para Untracked, ou seja antes do git add ., por exemplo
+
+git log # para pegar o hash do commit desejado
+git reset --hard hashDoCommitAnteriorAoDesejado
+git status 	# O git volta para o commit marcado (hash), 
+			# mas ele ignora qualquer alteração após o hash escolhido e exclui tudo (arquivo/diretório) após o hash 
+			
+* Para visualizarmos um histórico refinado podemos usar no lugar do 'git log':
+git reflog
+
+* Desfazendo o 'git add'
+
+Para retirar um arquivo da área de preparação (git commit), use:
+
+git reset diretorio/nomeDoArquivo (exemplo)
+ou
+git restore --staged diretorio/nomeDoArquivo (exemplo)
+
+/////////////////////////////////////////////////////////////////////////////
+Enviando e Baixando Alterações com o Repositório Remoto
+
+* Para usarmos o editor do GitHub, basta logar e apertar a tecla "."
+ou github.dev/suaconta/seurepositório
+
+* Para baixarmos as alterações do GitHub para o repositório local:
+
+git pull
+
+/////////////////////////////////////////////////////////////////////////////
+Trabalhando com Branches - Criando, Mesclando, Deletando e Tratando Conflitos
+
+* Criando uma nova branch e mudando para ela:
+
+git checkout -b novaBranch # ou git branch novaBranch
+
+Para voltar para main:
+
+git checkout main
+
+* Listando as branchs e o último commit de cada branch
+
+git branch -v
+
+* Mesclando branchs:
+
+git checkout main
+git merge novaBranch
+
+* Visualizando branchs
+
+git branch
+
+* Removendo uma branch
+
+git branch -d novaBranch
+
+////////////////////////////////////////////////////////////////////////////
+Trabalhando com Branches - Comandos Úteis no Dia a Dia
+
+
+'git pull' é a junção do 'git fecth + git merge', ou seja ele baixa o conteúdo do repositório remoto e atualiza o repositório local 
+mas e se quisermos apenas verificar se existem alterações entre os repositórios?
+
+git fecth
+git diff main origin/main (diferença entre as branchs local e remota)
+git merge origin/main (caso desejamos ajustar o repositório local com o remoto)
+
+
+* Clonando uma branch de um repositório com várias branchs no GitHub
+
+git clone URL --branch nomeDaBranch --single-branch (# 'nomeDaBranch --single-branch' indica que só é para clonar a branch 'nomeDaBranch')
+
+* Imagine que estamaos trabalhando na branch e removemos um arquivo qualquer, mas não queremos que a alteração seja efetuada no momento:
+
+git stash (#arquiva a alteração)
+git stash list (# lista todas as modificações 'travadas')
+
+Podemos criar uma nova branch, por exemplo:
+
+git checkout -b teste 
+git checkout nomeDaBranch
+
+Para trazer as modificações stash para branch:
+
+git stash pop (# tras as alterações, mas exclui a última alteração)
+git stash apply (# Mantem as modificações para uso posterior)
+
+////////////////////////////////////////////////////////////////////////////
+Materiais de apoio:
+
+https://github.com/elidianaandrade/dio-curso-git-github
+ 
+https://academiapme-my.sharepoint.com/:p:/g/personal/renato_dio_me/EYjkgVZuUv5HsVgJUEPv1_oB_QWs8MFBY_PBQ2UAtLqucg?e=262HGK

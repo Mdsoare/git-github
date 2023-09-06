@@ -1,3 +1,0 @@
-Apoio:
-https://aws.amazon.com/pt/docker/
-https://gitlab.c3sl.ufpr.br/pet/treinamentoGit/-/wikis/home

@@ -57,8 +57,9 @@ Repositório criado para fins educativos, com a disponibilização de materiais 
 </table>
 
 ## Referências 🔎
-- [GITHUB DOCS](https://docs.github.com/pt)
-- [GIT PRO](https://github.com/progit/progit2-pt-br)
+- [GITHUB DOCS. Ajuda online sobre GitHub](https://docs.github.com/pt)
+- [GIT PRO. Livro para download](https://git-scm.com/book/en/v2)
+- [GIT PRO PT. Repositório com a segunda versão em Português do Brasil](https://github.com/progit/progit2-pt-br)
 
 ##
 <div align="center">Disponibilizado por <a href="https://github.com/Mdsoare">🕶 Marcelo Soares ®</a>.</div>

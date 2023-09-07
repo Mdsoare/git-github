@@ -1,22 +1,64 @@
-<h1 align="center"><font face="Helvetica"> Introdução ao Git & GitHub </font></a></h1>
+<h1>
+    <a href="https://github.com/">
+     <img align="center" width="40px" src="logo.svg"></a>
+    <span>Introdução ao Git & GitHub</span>
+</h1>
 
-<p align="center"><font face="Helvetica"> Repositório criado como material de apoio introdutório ao uso do Git e GitHub </font></p>
-<p> </p>
-<h3> <font face="Helvetica"> 📖 Assuntos abordados 📖</font></h3>
+Repositório criado para fins educativos, com a disponibilização de materiais de apoio relacionados ao Git e GitHub
+<br>
 
+## Ferramentas 🖥️
+[![Git](https://img.shields.io/badge/Git-000?style=for-the-badge&logo=git&logoColor=E94D5F)](https://git-scm.com/doc) 
+[![Github](https://img.shields.io/badge/Github-000?style=for-the-badge&logo=github&logoColor=30A3DC)](https://docs.github.com/)
+[![Markdown](https://img.shields.io/badge/Markdown-000?style=for-the-badge&logo=markdown)](https://markdown.net.br/)
+
+## 📖 Assuntos abordados 📖
 <ul>
-	<font face="Helvetica">
-		<li>Criando um repositório Git pelo prompt</li>
-		<li>Help de comandos básicos</li>
-		<li>Meu primeiro repositório</li>
-	</font>
+	<li>Criando um repositório Git pelo prompt</li>
+	<li>Help de comandos básicos</li>
+	<li>Meu primeiro repositório</li>
 </ul>
 
-<p> </p>
-<h3 align="center"><font face="Helvetica"> ✨ ️Redes Socias ✨</font></h3>
-<p align="center"> 
-<a href="https://www.linkedin.com/in/marcelodsoares/"><font face="Helvetica">LinkedIn</font></a>
-<a href="https://github.com/Mdsoare/"><font face="Helvetica">GitHub</font></a>
-</p>
 
-<p align="center"><font face="Helvetica"> Disponibilizado por Marcelo Soares ® </font></p>
+## Ajuda - Convenção de Commits 💻
+
+| Tipo de Commit | Descrição                                                                                                 |
+| -------------- | --------------------------------------------------------------------------------------------------------- |
+| `feat`         | Adiciona uma nova funcionalidade ao projeto.                                                              |
+| `fix`          | Corrige um bug ou problema no projeto.                                                                    |
+| `docs`         | Altera a documentação do projeto. Ex.: README, comentários no código.                                     |
+| `style`        | Realiza mudanças na aparência, sem alterar a funcionalidade.                                              |
+| `refactor`     | Realiza mudanças no código que não alteram a funcionalidade.                                              |
+| `test`         | Adiciona ou modifica testes no projeto.                                                                   |
+
+#### Exemplo commit
+
+`feat: adicionado novo arquivo`
+<br>
+
+## ✨ ️Redes Socias ✨
+
+[![PerfilDIO](https://img.shields.io/badge/DIO-0077B5?style=for-the-badge&logo=dio&logoColor=white)](https://web.dio.me/users/marcelo_soares92)
+[![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=30A3DC)](https://github.com/Mdsoare/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcelodsoares/) 
+<table>
+  <tr>
+    <td>
+      <img width="80px" align="center" src="https://avatars.githubusercontent.com/Mdsoare"/>
+    </td>
+    <td align="left">
+      <a href="https://github.com/Mdsoare">
+        <span><b>Marcelo Soares</b></span>
+      </a>
+      <br>
+      <span>Analista de Sistemas</span>
+    </td>
+  </tr>
+</table>
+
+## Referências 🔎
+- [GITHUB DOCS](https://docs.github.com/pt)
+- [GIT PRO](https://github.com/progit/progit2-pt-br)
+
+##
+<div align="center">Disponibilizado por <a href="https://github.com/Mdsoare">🕶 Marcelo Soares ®</a>.</div>

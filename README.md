@@ -36,7 +36,7 @@ Repositório criado para fins educativos, com a disponibilização de materiais 
 `feat: adicionado novo arquivo`
 <br>
 
-## ✨ ️Redes Socias ✨
+## Redes Socias
 
 [![PerfilDIO](https://img.shields.io/badge/DIO-0077B5?style=for-the-badge&logo=dio&logoColor=white)](https://web.dio.me/users/marcelo_soares92)
 [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=30A3DC)](https://github.com/Mdsoare/)

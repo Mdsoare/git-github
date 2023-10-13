@@ -32,8 +32,10 @@ Repositório criado para fins educativos, com a disponibilização de materiais 
 | `test`         | Adiciona ou modifica testes no projeto.                                                                   |
 
 #### Exemplo commit
-
 `feat: adicionado novo arquivo`
+
+#### Treine seus commits no Free Explorer
+- [FreeExplorer](https://git-school.github.io/visualizing-git/)
 <br>
 
 ## Redes Socias

@@ -34,7 +34,8 @@ Repositório criado para fins educativos, com a disponibilização de materiais 
 #### Exemplo commit
 `feat: adicionado novo arquivo`
 
-#### Treine seus commits no Free Explorer
+#### Treine seus commits
+- [Convenção](https://www.conventionalcommits.org/)
 - [FreeExplorer](https://git-school.github.io/visualizing-git/)
 <br>
 

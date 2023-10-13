@@ -63,6 +63,7 @@ Repositório criado para fins educativos, com a disponibilização de materiais 
 - [GITHUB DOCS. Ajuda online sobre GitHub](https://docs.github.com/pt)
 - [GIT PRO. Livro para download](https://git-scm.com/book/en/v2)
 - [GIT PRO PT. Repositório com a segunda versão em Português do Brasil](https://github.com/progit/progit2-pt-br)
+- [MARKDOWN](https://docs.github.com/pt/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
 ##
 <div align="center">Disponibilizado por <a href="https://github.com/Mdsoare">🕶 Marcelo Soares ®</a>.</div>

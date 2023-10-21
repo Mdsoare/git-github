@@ -2,16 +2,18 @@
     <a href="https://www.dio.me/">
      <img align="center" width="40px" src="https://hermes.digitalinnovation.one/assets/diome/logo-minimized.png"></a>
     <span> Formação Lógica de Programação</span>
-    <img align="center" width="80px" src=" https://hermes.dio.me/tracks/977d1b41-5888-44d7-8e4c-57d2348748dc.png"></a>    
+    <img align="center" width="80px" src="https://hermes.dio.me/tracks/977d1b41-5888-44d7-8e4c-57d2348748dc.png"></a>    
+    <img align="center" width="80px" src="https://hermes.dio.me/tracks/9388e8d8-00d5-4007-a7c9-357324fe73fa.png"></a> 
 </h1>
+<br>
 
-# 1️⃣ Desafio Classificador de nível de Herói
+## 1️⃣ Desafio Classificador de nível de Herói
 
 <table>
   <thead>
     <tr align="left">
       <th>Nº</th>
-      <th>Etapas</th>
+      <th>Etapa</th>
       <th>📖 Acesso 📖</th>
     </tr>
   </thead>
@@ -55,13 +57,13 @@ Se XP for maior ou igual a 10.001 = Radiante
 "O Herói de nome **{nome}** está no nível de **{nivel}**"
 <br>
 
-# 2️⃣ Calculadora de partidas Rankeadas
+## 2️⃣ Calculadora de partidas Rankeadas
 
 <table>
   <thead>
     <tr align="left">
       <th>Nº</th>
-      <th>Etapas</th>
+      <th>Etapa</th>
       <th>📖 Acesso 📖</th>
     </tr>
   </thead>

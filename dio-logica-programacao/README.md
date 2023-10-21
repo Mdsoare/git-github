@@ -5,7 +5,29 @@
     <img align="center" width="80px" src=" https://hermes.dio.me/tracks/977d1b41-5888-44d7-8e4c-57d2348748dc.png"></a>    
 </h1>
 
-## 1️⃣ Desafio Classificador de nível de Herói
+# 1️⃣ Desafio Classificador de nível de Herói
+
+<table>
+  <thead>
+    <tr align="left">
+      <th>Nº</th>
+      <th>Etapas</th>
+      <th>📖 Acesso 📖</th>
+    </tr>
+  </thead>
+  <tbody align="left">
+    <tr>
+      <td>01</td>
+      <td>Classificador de Nível de Herói</td>
+      <td align="center">
+        <a href="https://github.com/Mdsoare/git-github/tree/main/dio-logica-programacao/codigo-desafio-heroi">
+           <img align="center" alt="Ver código" src="https://img.shields.io/badge/Ver%20Material-30A3DC?style=for-the-badge">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot></tfoot>
+</table>
 
 **O que deve ser utilizado:**
 
@@ -31,6 +53,57 @@ Se XP for maior ou igual a 10.001 = Radiante
 
 > Ao final deve se exibir uma mensagem:
 "O Herói de nome **{nome}** está no nível de **{nivel}**"
+<br>
+
+# 2️⃣ Calculadora de partidas Rankeadas
+
+<table>
+  <thead>
+    <tr align="left">
+      <th>Nº</th>
+      <th>Etapas</th>
+      <th>📖 Acesso 📖</th>
+    </tr>
+  </thead>
+  <tbody align="left">
+    <tr>
+      <td>02</td>
+      <td>Calculadora de Partidas Rankeadas</td>
+      <td align="center">
+        <a href="https://github.com/Mdsoare/git-github/tree/main/dio-logica-programacao/codigo-desafio-rank">
+           <img align="center" alt="Ver código" src="https://img.shields.io/badge/Ver%20Material-E94D5F?style=for-the-badge">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot></tfoot>
+</table>
+
+**O Que deve ser utilizado**
+
+- Variáveis
+- Operadores
+- Laços de repetição
+- Estruturas de decisões
+- Funções
+
+## Objetivo:
+
+Crie uma função que recebe como parâmetro a quantidade de vitórias e derrotas de um jogador,
+depois disso retorne o resultado para uma variável, o saldo de Rankeadas deve ser feito através do calculo (vitórias - derrotas)
+
+Se vitórias for menor do que 10 = Ferro
+Se vitórias for entre 11 e 20 = Bronze
+Se vitórias for entre 21 e 50 = Prata
+Se vitórias for entre 51 e 80 = Ouro
+Se vitórias for entre 81 e 90 = Diamante
+Se vitórias for entre 91 e 100= Lendário
+Se vitórias for maior ou igual a 101 = Imortal
+
+## Saída
+
+> Ao final deve se exibir uma mensagem:
+"O Herói tem de saldo de **{saldoVitorias}** está no nível de **{nivel}**"
 <br>
 
 ## Referências 🔎

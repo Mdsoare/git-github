@@ -1,11 +1,21 @@
 <h1>
     <a href="https://www.dio.me/">
      <img align="center" width="40px" src="https://hermes.digitalinnovation.one/assets/diome/logo-minimized.png"></a>
-    <span> Formação Lógica de Programação</span>
+    <span> Formação Lógica de Programação / Potência Tech iFood - Programação do Zero</span>
     <img align="center" width="80px" src="https://hermes.dio.me/tracks/977d1b41-5888-44d7-8e4c-57d2348748dc.png"></a>    
     <img align="center" width="80px" src="https://hermes.dio.me/tracks/9388e8d8-00d5-4007-a7c9-357324fe73fa.png"></a> 
 </h1>
 <br>
+
+Repositório criado para fins educacionais, com a disponibilização de materiais relacionados a **Formação Lógica de Programação** e o Bootcamp **Potência Tech iFood - Programação do Zero** da [Digital Innovation One](https://www.dio.me/). 
+<br>
+<img width="70px" background-color="black" src="https://hermes.digitalinnovation.one/assets/diome/logo.svg">
+
+[![Link do Curso](https://img.shields.io/badge/▶-000?style=for-the-badge&logo=movie&logoColor=E94D5F)](https://web.dio.me/track/formacao-logica-de-programacao) 
+[![Link do Curso](https://img.shields.io/badge/Acesse%20o%20Curso%20na%20Plataforma-E94D5F?style=for-the-badge)](https://web.dio.me/track/formacao-logica-de-programacao) 
+
+[![Link do Curso](https://img.shields.io/badge/▶-000?style=for-the-badge&logo=movie&logoColor=E94D5F)](https://web.dio.me/track/potencia-tech-ifood-programacao-do-zero) 
+[![Link do Curso](https://img.shields.io/badge/Acesse%20o%20Curso%20na%20Plataforma-E94D5F?style=for-the-badge)](https://web.dio.me/track/potencia-tech-ifood-programacao-do-zero) 
 
 ## 1️⃣ Desafio Classificador de nível de Herói
 
@@ -107,6 +117,32 @@ Se vitórias for maior ou igual a 101 = Imortal
 > Ao final deve se exibir uma mensagem:
 "O Herói tem de saldo de **{saldoVitorias}** está no nível de **{nivel}**"
 <br>
+
+## EXTRA - Resolvendo os desafios na plataforma DIO
+
+## Objetivo:
+
+<table>
+  <thead>
+    <tr align="left">
+      <th>Nº</th>
+      <th>Etapa</th>
+      <th>📖 Acesso 📖</th>
+    </tr>
+  </thead>
+  <tbody align="left">
+    <tr>
+      <td>03</td>
+      <td>Desafios de códigos</td>
+      <td align="center">
+        <a href="https://github.com/Mdsoare/git-github/tree/main/dio-logica-programacao/codigos-pbl">
+           <img align="center" alt="Ver código" src="https://img.shields.io/badge/Ver%20Material-30A3DC?style=for-the-badge">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot></tfoot>
+</table>
 
 ## Referências 🔎
 - [Notion - Mapa de aventura](https://helpful-jump-17b.notion.site/Mapa-de-aventura-91f3e9bd923842149d4dba754dc65c07)

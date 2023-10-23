@@ -118,6 +118,67 @@ Se vitórias for maior ou igual a 101 = Imortal
 "O Herói tem de saldo de **{saldoVitorias}** está no nível de **{nivel}**"
 <br>
 
+## 3️⃣ Escrevendo as classes de um Jogo
+
+<table>
+  <thead>
+    <tr align="left">
+      <th>Nº</th>
+      <th>Etapa</th>
+      <th>📖 Acesso 📖</th>
+    </tr>
+  </thead>
+  <tbody align="left">
+    <tr>
+      <td>03</td>
+      <td>Escrevendo as Classes de Um Jogo</td>
+      <td align="center">
+        <a href="https://github.com/Mdsoare/git-github/tree/main/dio-logica-programacao/codigo-desafio-classe">
+           <img align="center" alt="Ver código" src="https://img.shields.io/badge/Ver%20Material-30A3DC?style=for-the-badge">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot></tfoot>
+</table>
+
+**O Que deve ser utilizado**
+
+- Variáveis
+- Operadores
+- Laços de repetição
+- Estruturas de decisões
+- Funções
+- Classes e Objetos
+
+## Objetivo:
+
+Crie uma classe generica que represente um herói de uma aventura e que possua as seguintes propriedades:
+
+- nome
+- idade
+- tipo (ex: guerreiro, mago, monge, ninja )
+
+além disso, deve ter um método chamado atacar que deve atender os seguientes requisitos:
+
+- exibir a mensagem: "o {tipo} atacou usando {ataque}")
+- aonde o {tipo} deve ser concatenando o tipo que está na propriedade da classe
+- e no {ataque} deve seguir uma descrição diferente conforme o tipo, seguindo a tabela abaixo:
+
+se mago -> no ataque exibir (usou magia)
+se guerreiro -> no ataque exibir (usou espada)
+se monge -> no ataque exibir (usou artes marciais)
+se ninja -> no ataque exibir (usou shuriken)
+
+## Saída
+
+Ao final deve se exibir uma mensagem:
+
+- "o {tipo} atacou usando {ataque}"
+  ex: mago atacou usando magia
+  guerreiro atacou usando espada
+
+<br>
 ## EXTRA - Resolvendo os desafios na plataforma DIO
 
 ## Objetivo:
@@ -132,7 +193,7 @@ Se vitórias for maior ou igual a 101 = Imortal
   </thead>
   <tbody align="left">
     <tr>
-      <td>03</td>
+      <td>04</td>
       <td>Desafios de códigos</td>
       <td align="center">
         <a href="https://github.com/Mdsoare/git-github/tree/main/dio-logica-programacao/codigos-pbl">

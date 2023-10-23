@@ -146,6 +146,10 @@ Se vitórias for maior ou igual a 101 = Imortal
 
 ## Referências 🔎
 - [Notion - Mapa de aventura](https://helpful-jump-17b.notion.site/Mapa-de-aventura-91f3e9bd923842149d4dba754dc65c07)
+
+## Testes de código online:
+- [Playcode](https://playcode.io/javascript)
+- [W3Schools](https://www.w3schools.com/tryit/trycompiler.asp?filename=demo_nodejs)
 <br>
 
 ## Redes Socias
